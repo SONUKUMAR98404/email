@@ -47,3 +47,9 @@ python3 verify_apks.py apks/     # writes apks/inventory.csv
 ```
 
 For each file this records the package, version, SDK levels, size, SHA-256, signature schemes and the SHA-256 of the signing certificate. Compare that certificate digest against the same app from Google Play to spot re-signed (modified) builds.
+
+## Download results (2026-10-05)
+
+71 of 74 apps downloaded (2.2 GB: 34 single APKs, 37 XAPK split bundles). All 71 parse as valid APKs whose package name matches the list; see `apk_inventory.csv` for versions, checksums and signing-certificate digests.
+
+APKPure's API returned no versions for three apps, so they could not be downloaded: `com.shopify.pos` (Shopify POS), `com.nowpos.pos` (PayVoo POS) and `com.smartpesa.weepay` (WeePay mPOS).
