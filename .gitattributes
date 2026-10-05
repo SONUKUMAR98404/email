@@ -1,2 +1,2 @@
-pos-apks/apks/*.apk filter=lfs diff=lfs merge=lfs -text
-pos-apks/apks/*.xapk filter=lfs diff=lfs merge=lfs -text
+pos-apks/apks/**/*.apk filter=lfs diff=lfs merge=lfs -text
+pos-apks/apks/**/*.xapk filter=lfs diff=lfs merge=lfs -text

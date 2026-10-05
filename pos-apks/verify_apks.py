@@ -62,7 +62,7 @@ def main():
     apk_dir = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).parent / "apks")
     out = Path(sys.argv[2] if len(sys.argv) > 2 else apk_dir / "inventory.csv")
     rows = []
-    for path in sorted(apk_dir.glob("*.*apk")):
+    for path in sorted(apk_dir.rglob("*.*apk")):
         row = {"file": path.name, "bytes": path.stat().st_size, "sha256": sha256_file(path)}
         try:
             data, n_apks = base_apk_bytes(path)

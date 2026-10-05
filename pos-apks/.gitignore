@@ -1,3 +1,3 @@
 apks/*
-!apks/*.apk
-!apks/*.xapk
+!apks/apk/
+!apks/xapk/

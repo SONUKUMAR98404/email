@@ -50,6 +50,6 @@ For each file this records the package, version, SDK levels, size, SHA-256, sign
 
 ## Download results (2026-10-05)
 
-71 of 74 apps downloaded (2.2 GB: 34 single APKs, 37 XAPK split bundles). All 71 parse as valid APKs whose package name matches the list; see `apk_inventory.csv` for versions, checksums and signing-certificate digests.
+71 of 74 apps downloaded (2.2 GB: 34 single APKs, 37 XAPK split bundles). All 71 parse as valid APKs whose package name matches the list. They are stored with Git LFS in `apks/apk/` (installable directly) and `apks/xapk/` (unzip, then `adb install-multiple *.apk`); see `apk_inventory.csv` for versions, checksums and signing-certificate digests.
 
 APKPure's API returned no versions for three apps, so they could not be downloaded: `com.shopify.pos` (Shopify POS), `com.nowpos.pos` (PayVoo POS) and `com.smartpesa.weepay` (WeePay mPOS).
