@@ -24,3 +24,26 @@ Some vendor apps are hardware-locked or need a merchant account to get past logi
 The script requests `https://d.apkpure.com/b/APK/<package>?version=latest`. If that fails it tries the XAPK variant. It checks that each file is a valid zip and saves it as `<package>.apk`, or `<package>.xapk` for split-APK bundles. Results go to `apks/download_log.csv` with the size and SHA-256 of each file. If you run it again, it skips files that are already downloaded.
 
 If APKPure blocks a package or doesn't have it, the log marks it `failed`. Open its `apkpure_url` from the CSV and download it by hand.
+
+## Downloading with apkeep (what was used in practice)
+
+From servers that get APKPure's Cloudflare challenge, the script above fails. EFF's [apkeep](https://github.com/EFForg/apkeep) uses APKPure's app API instead:
+
+```bash
+cargo install apkeep
+tail -n +2 pos_apps.csv | cut -d, -f1 > packages.txt
+apkeep -c packages.txt -d apk-pure -o 'acknowledge_dangers=true' -r 3 -s 1000 apks/
+```
+
+Hosts needed: `api.pureapk.com`, `download.pureapk.com`, `data.winudf.com`.
+
+APKPure is an unofficial mirror that has been caught serving repackaged apps with malware. Install these only on an emulator or a dedicated test device.
+
+## Verifying downloads
+
+```bash
+pip install androguard
+python3 verify_apks.py apks/     # writes apks/inventory.csv
+```
+
+For each file this records the package, version, SDK levels, size, SHA-256, signature schemes and the SHA-256 of the signing certificate. Compare that certificate digest against the same app from Google Play to spot re-signed (modified) builds.
